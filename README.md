@@ -1,5 +1,6 @@
 # series
-touch number from 1 to 16
+touch number from 1 to 16  
+http://fukuno.jig.jp/1556  
 
 # original
 じゅんにおす by Kinoshita  
