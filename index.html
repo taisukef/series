@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, user-scalable=no", initial-scale=1.0 />
-<meta name="apple-mobile-web-app-capable" content="yes" />
+<!--<meta name="apple-mobile-web-app-capable" content="yes" />-->
 <meta property="og:image" content="ss.png">
 <link rel="apple-touch-icon" href="icon.png"/>
 <title>じゅんにおす</title>
@@ -177,7 +177,6 @@ function タッチ(tx, ty) {
 				var hashtag = "eハピー";
 				var turl = "https://twitter.com/share?url=" + encodeURIComponent(url) + "&text=" + encodeURIComponent(s) +"&via=" + id + "&hashtags=" + encodeURIComponent(hashtag);
 				if (モバイル対応端末()) {
-				alert(turl);
 					document.location.href = turl;
 				} else {
 					window.open(turl, "_blank", "width=600,height=300");
