@@ -171,7 +171,8 @@ function タッチ(tx, ty) {
 		if (ty > 画面高 - オフセットY - 小フォントサイズ) {
 			if (tx < 画面幅 / 2) {
 				var url = document.location.href;
-				var s = "「じゅんにおす」を" + 3 + "秒でクリア！ #eハピー " + url;
+				var t = Math.floor(経過時間 / 100);
+				var s = "「じゅんにおす」を" + Math.floor(t / 10) + "." + (t % 10) + "秒でクリア！ #eハピー";
 				var turl = "http://twitter.com/share?url=" + encodeURIComponent(url) + "&text=" + encodeURIComponent(s);
 				window.open(turl,"_blank","width=600,height=300");
 			} else {
