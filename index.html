@@ -174,9 +174,18 @@ function タッチ(tx, ty) {
 				var t = Math.floor(経過時間 / 100);
 				var s = "「じゅんにおす」を" + Math.floor(t / 10) + "." + (t % 10) + "秒でクリア！ #eハピー";
 				var turl = "http://twitter.com/share?url=" + encodeURIComponent(url) + "&text=" + encodeURIComponent(s);
-				window.open(turl,"_blank","width=600,height=300");
+				if (モバイル対応端末()) {
+					document.location.href = turl;
+				} else {
+					window.open(turl,"_blank","width=600,height=300");
+				}
 			} else {
-				window.open("http://fukuno.jig.jp/1556", "_blank");
+				var surl = "http://fukuno.jig.jp/1556";
+				if (モバイル対応端末()) {
+					document.location.href = surl;
+				} else {
+					window.open(surl, "_blank");
+				}
 			}
 		} else {
 			初期化せよ();
