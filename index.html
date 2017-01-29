@@ -46,9 +46,16 @@ window.onload = function() {
 	if (モバイル対応端末()) {
 		canv.addEventListener("touchstart",
 		    function(e) {
+				/*
+				var rect = e.target.getBoundingClientRect();
 			    タッチ(
-					e.touches[0].clientX,
-					e.touches[0].clientY
+					e.touches[0].clientX - rect.left,
+					e.touches[0].clientY - rect.top
+				);
+				*/
+			    タッチ(
+					e.touches[0].pageX,
+					e.touches[0].pageY
 				);
 				e.preventDefault();
 		    }
@@ -56,7 +63,11 @@ window.onload = function() {
 	} else {
 		canv.addEventListener("click",
 		    function(e) {
-		    	タッチ(e.clientX, e.clientY);
+		    	タッチ(e.pageX, e.pageY);
+//				alert(e.pageY + " " + e.clientY);
+//				var rect = e.target.getBoundingClientRect();
+//		    	タッチ(e.clientX, e.clientY);
+//		    	タッチ(e.clientX - rect.left, e.clientY - rect.top);
 		    }
 		);
 	}
@@ -129,6 +140,7 @@ function 描画せよ() {
 	ctx.fillStyle = "rgb(235,208,175)";
 	ctx.fillRect(0, 0, 画面幅, 画面高);
 	ctx.fillStyle = "black";
+	ctx.textBaseline = "middle";
 	ctx.font = "bold " + 小フォントサイズ + "px Monospace";
 	var タイトル = [ "" ];
 	タイトル.push(時計[parseInt(経過時間 / 1000) % 時計.length]);
@@ -144,7 +156,7 @@ function 描画せよ() {
 	タイトル.push(表示用数字[Math.floor(経過時間 / 100) % 10]);
 	タイトル.push(時計[parseInt(経過時間 / 1000) % 時計.length]);
 	for (var i = 0; i < タイトル.length; i++) {
-		ctx.fillText(タイトル[i], オフセットX + i * 小フォントサイズ, オフセットY + 小フォントサイズ);
+		ctx.fillText(タイトル[i], オフセットX + i * 小フォントサイズ, オフセットY + 小フォントサイズ / 2);
 	}
 	ctx.font = "bold " + 大フォントサイズ + "px Monospace";
 	for (var i = 0; i < 盤高; i++) {
@@ -153,7 +165,8 @@ function 描画せよ() {
 			if (押済盤[i][j] == 0) {
 				テキスト = タイル数字[数字盤[i][j] - 1];
 			}
-			ctx.fillText(テキスト, オフセットX + j * 大フォントサイズ, オフセットY + (i + 1) * 大フォントサイズ + 小フォントサイズ);
+			ctx.fillText(テキスト, オフセットX + j * 大フォントサイズ, オフセットY + i * 大フォントサイズ + 大フォントサイズ / 2 + 小フォントサイズ);
+			ctx.strokeRect(オフセットX + j * 大フォントサイズ, オフセットY + i * 大フォントサイズ + 小フォントサイズ, 大フォントサイズ, 大フォントサイズ);
 		}
 	}
 	if (クリア) {
